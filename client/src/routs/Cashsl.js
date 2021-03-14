@@ -33,6 +33,7 @@ const addEntry=(e)=>
 
 
 //search
+let id='';
 const search=(e)=>
 {
     e.preventDefault();
@@ -40,6 +41,8 @@ const search=(e)=>
     axios.get(`http://localhost:8000/user/info/cash.sl?invoice=${invoice}`)
         .then(res=>
         {
+            id=res.data[0]._id;
+            console.log(id);
             console.log(res.data);
             document.getElementById('qdate').value=res.data[0].date.slice(0,10);
             document.getElementById('qinvoice').value=res.data[0].invoice;
@@ -53,7 +56,30 @@ const search=(e)=>
 
 }
 
+//update
+const updateq=(e)=>
+{
+    const data=
+    {
+       date:document.getElementById('qdate').value,
+       invoice:document.getElementById('qinvoice').value,
+       customer:document.getElementById('qname').value,
+      // quantity:Number(document.getElementById('qdiscount').value),
+       //uprice:Number(document.getElementById('qquantity').value),
+       discount:Number(document.getElementById('qdiscount').value),
+       value:Number(document.getElementById('qvalue').value)
+    }
+    console.log(id + "and "+ data);
+    //console.log(data);
+   axios.put(`http://localhost:8000/user/info/cash.sl/${id}`,data);
+}
 
+
+const  deleteq=(e)=>
+{
+    console.log(id); 
+    axios.delete(`http://localhost:8000/user/info/cash.sl/${id}`);
+}
 
     return (  
         <div class='cashsl'>
@@ -82,8 +108,8 @@ const search=(e)=>
                         <input type='text'placeholder='Name' id='qname'/>
                         <input type='text' placeholder='Discount' id='qdiscount'/>
                         <input type='text' placeholder='value' id='qvalue'/>
-                        <Button text='update'/>
-                        <Button text='Delete'/>
+                        <Button text='update' onClick={e=>updateq(e)}/>
+                        <Button text='Delete' onClick={e=>deleteq(e)}/>
                     
                 </div>
                 <div class='query_table'>

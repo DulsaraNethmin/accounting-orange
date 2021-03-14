@@ -68,7 +68,7 @@
 }
 .query_table_creditsl div
 {
-    height: 30px;
+    height: 30px; 
     font-size: 15px;
     display: grid;
     grid-template-columns: 80px 120px 200px 80px 100px 80px 80px;
@@ -90,3 +90,10 @@
     margin-left: 300px;
     
 }
+
+
+.query_table_creditsl div .div_table
+{
+    background-color:burlywood;
+}
+
