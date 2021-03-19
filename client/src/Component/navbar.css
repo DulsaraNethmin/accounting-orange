@@ -3,13 +3,13 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-}
+} 
 .nav-div
 {
     display: grid;
     grid-template-columns: 2fr 1.5fr;
     height: 100px;
-    background-color: rgb(156, 153, 147);
+    background-color:cyan ;
     gap: 250px;
 }
 nav
@@ -41,6 +41,13 @@ nav span:hover
     margin-left: 30px;
     margin-top: 20px;
     font-size: 40px;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 350px;
+    height: 60px;
+    border-radius: 50px;
+    padding-left: 40px;
+    cursor: pointer;
 }
 
 
@@ -52,7 +59,7 @@ select
     font-weight: 400;
     cursor: pointer;
     height: 20px;
-    background-color: rgb(156, 153, 147);
+    background-color:cyan ;
     text-decoration: none;
    width: 110px;
     font-size: 17px;

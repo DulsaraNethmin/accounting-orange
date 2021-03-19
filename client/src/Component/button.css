@@ -1,11 +1,10 @@
 button
 {
-    width: 80px;
+    width: 90px;
     height: 35px;
     border: 0px;
     outline: none;
     color: black;
-    background-color: white;
     font-size: 18px;
 }
 
