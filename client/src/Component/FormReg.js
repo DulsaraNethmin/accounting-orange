@@ -24,7 +24,7 @@ const FormReg =({onClick}) => {
                 {
                         console.log(res);
                         if(res.data==='userCreated')
-                            history.push('/');
+                            history.push('/login');
                        else if(res.data==='userNotCreated')
                             history.push('/register');
                  })
@@ -67,7 +67,8 @@ const finalCheck=()=>
 }
 
     return (  
-        <div>
+        <div className='main'>
+            <div>AccounTina-Reg. here</div>
         <form className='reg'>
             <h2>Register</h2>
             <input type='text' placeholder='Name' id='name' required maxLength='30' minLength='5'/>

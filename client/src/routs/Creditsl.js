@@ -1,9 +1,13 @@
 import Button from '../Component/Button';
 import axios from 'axios';
+import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import Navbar from '../Component/Navbar';
 
 
 const Creditsl = () => {
+
+    const [values,setValues]=useState([]);
     //addentry
 const addEntry=(e)=>
 {
@@ -11,6 +15,7 @@ const addEntry=(e)=>
     let date=document.getElementById('date').value;
     let invoice=document.getElementById('invoice').value;
     let name=document.getElementById('name').value;
+    let item=document.getElementById('item').value;
     let quantity=document.getElementById('quantity').value;
     let uprice=document.getElementById('unitprice').value;
     let discount=document.getElementById('discount').value;
@@ -20,6 +25,7 @@ const addEntry=(e)=>
         date:date,
         invoice:invoice,
         customer:name,
+        item:item,
         quantity:Number(quantity),
         uprice:Number(uprice),
         discount:Number(discount),
@@ -27,8 +33,15 @@ const addEntry=(e)=>
     }
 
     console.log(data);
-    axios.post('http://localhost:8000/user/info/sales.cr',data);
-
+    axios.post('http://localhost:8000/user/info/sales.cr',data)
+        .then(res=>
+            {
+                console.log(res.data);
+                let arr=Object.values(res.data).map(e=><div>{e}</div>);
+                console.log(arr);
+                let arr2=values.concat(arr);
+                setValues(arr2);
+            })
 }
 let id='';
 //search
@@ -83,20 +96,31 @@ const  deleteq=(e)=>
     axios.delete(`http://localhost:8000/user/info/sales.cr/${id}`);
 }
 
+const getValue=()=>
+{
+    let v=document.getElementById('value').value*1;
+    let up=document.getElementById('unitprice').value*1;
+    let dis=document.getElementById('discount').value*1;
+    let qnt=document.getElementById('quantity').value*1; 
+    document.getElementById('value').value=
+        eval(up*qnt-up*qnt*dis/100);
+}    
     
     
-    
-    return (  
+    return (   
+        <div>
+            <Navbar/>
         <div class='cashsl'>
            
             <div class='cashsl_entry'>
                 <h1>Salas on Credit</h1>
-                <input type='date' id='date' />
-                <input type='text' placeholder='Credit note' id='invoice'/>
-                <input type='text'placeholder='Name' id='name'/>
+                <input type='date' id='date'/> 
+                <input type='text' placeholder='Purchase Invoice' id='invoice'/>
+                <input type='text'placeholder='Sellar' id='name'/>
+                <input type='text'placeholder='Item' id='item'/>
                 <input type='text' placeholder='Quantity' id='quantity'/>
                 <input type='text' placeholder='Unit price' id='unitprice'/>
-                <input type='text' placeholder='Discount' id='discount'/>
+                <input type='text' placeholder='Discount %' id='discount' onBlur={()=>getValue()}/>
                 <input type='text' placeholder='value' id='value'/>
                 <Button text='Add entry' id='addentry' onClick={(e)=>addEntry(e)}/>
             </div>
@@ -112,7 +136,8 @@ const  deleteq=(e)=>
                 
                         <input type='date' id='qdate'/>
                         <input type='text' placeholder='Invoice no' id='qinvoice'/>
-                        <input type='text'placeholder='Name' id='qname'/>
+                        <input type='text'placeholder='Sellar' id='qname'/>
+                        <input type='text'placeholder='Item' id='qitem'/>
                         <input type='text' placeholder='Quantity' id='qquantity'/>
                         <input type='text' placeholder='Unit Price' id='quprice'/>
                         <input type='text' placeholder='Discount' id='qdiscount'/>
@@ -122,18 +147,22 @@ const  deleteq=(e)=>
                     
                 </div>
                 <div class='query_table_creditsl'>
+                <Button text="fetch" className='tableFetch'/>
                     <div>
-                        <div>date</div>
-                        <div>invoice no</div>
-                        <div>name</div>
-                        <div>Quantity</div>
-                        <div>Unit Price</div>
-                        <div>discount</div>
-                        <div>value</div>
+                        <div className='div_table'>date</div>
+                        <div className='div_table'>credit note</div>
+                        <div className='div_table' >Sellar</div>
+                        <div className='div_table' >Item</div>
+                        <div className='div_table'>Quantity</div>
+                        <div className='div_table'>Unit Price</div>
+                        <div className='div_table'>discount</div>
+                        <div className='div_table'>value</div>
+                        {values}
                     </div>
                 </div>
             </div>
         </div>        
+    </div>
     );
 }
  

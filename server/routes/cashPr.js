@@ -11,7 +11,7 @@ router.post('/',async(req,res)=>
         const cashPr=await CashPr.create(req.body);
         //console.log();
         if(cashPr)
-            return res.status(201).send("recorded");
+            return res.status(201).send(req.body);
         else
             return res.status(201).send("notRecorded");
     }

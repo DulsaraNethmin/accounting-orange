@@ -12,6 +12,7 @@ const purchaseRe=require('./routes/purchaseRe');
 const purchaseCr=require('./routes/purchaseCr');
 const cashPr=require('./routes/cashPr');
 const cashSl=require('./routes/cashSl');
+const report= require('./routes/report');
 app.use(cors());
 
 //monunt user
@@ -24,7 +25,7 @@ app.use('/user/info/purchase.re',purchaseRe);
 app.use('/user/info/purchase.cr',purchaseCr);
 app.use('/user/info/cash.pr',cashPr);
 app.use('/user/info/cash.sl',cashSl);
-
+app.use('/get.user.info',report);
 
 
 app.get('/',(req,res)=>res.send('hello'));

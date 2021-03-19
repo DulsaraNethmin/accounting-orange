@@ -1,9 +1,9 @@
 import './navbar.css';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import {useState} from 'react';
 
 const Navbar = () => {
-
+    const history=useHistory();
     const [sales,setSales]=useState('');
     const [purchase,setPurchase]=useState('');
 
@@ -41,22 +41,11 @@ const Navbar = () => {
 
     return (
         <div className='nav-div'>
-        <h1 className='main-title'>Accountina</h1>  
+        <h1 className='main-title' onClick={()=>history.push('/dash.board')}>AccounTina</h1>  
         <nav>
-        <Link to='/home'><span>Home</span></Link>
-            <span><Link to={sales}><select onChange={(e)=>saleslink(e)}>
-                    <option>Sales</option>
-                    <option>Sales on cash</option>
-                    <option> on credit</option>
-                    <option>Sales return</option>
-                </select></Link></span>
-                <span><Link to={purchase}><select onChange={(e)=>purchaselink(e)}>
-                    <option>Purchase</option>
-                    <option>cash Purchase</option>
-                    <option>on credit</option>
-                    <option>Purchase return</option>
-                </select></Link></span>
-                <Link to='/'> <span class='spanlink'>Login</span> </Link>
+                <span onClick={()=>history.push('/dash.board')}>DashBoard</span>
+                <span onClick={()=>history.push('/analysis')}>Analysis</span>
+                 <span class='spanlink' onClick={()=>{sessionStorage.setItem("loginState",false);history.push('/login')}}>Logout</span>
         </nav>
         </div>
     );

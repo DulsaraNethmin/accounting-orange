@@ -13,6 +13,10 @@ let cashPrSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    item: {
+        type: String,
+        required:true
+    },
     // quantity: {
     //     type: Number,
     //     required:true

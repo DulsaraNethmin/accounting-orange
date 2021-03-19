@@ -5,7 +5,7 @@
     grid-template-rows: 30px 30px 30px 30px 30px 30px;
     gap: 30px;
     width: 500px;
-    background-color: rgb(240, 219, 219);
+    background-color: white;
     height: 530px;
     
 }
@@ -17,7 +17,7 @@ form input
     border: 0px;
     width: 480px;
     outline: none;
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid blue; 
 }
 
 form div
@@ -48,4 +48,22 @@ form div span:hover
     margin-top: -30px;
     margin-left: 10px;
     font-size: 12px
+}
+
+.main
+{ 
+    margin-top: 0px;
+    margin-left: 20spx;
+    width: 800px;
+    height: 350px;
+    background-color: rgb(51, 190, 190);
+}
+
+.main div 
+{
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    vertical-align: middle;
+    font-weight: 500;
+    margin-left: 40px;
 }

@@ -10,6 +10,11 @@ let cashSlSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
+    item: {
+        type: String,
+        required:true,
+        unique:true
+    },
     customer: {
         type: String,
         required:true

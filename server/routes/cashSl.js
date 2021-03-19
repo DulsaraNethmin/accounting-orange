@@ -1,5 +1,5 @@
 const express = require('express');
-const CashSl =require('../model/CashSl');
+    const CashSl =require('../model/CashSl');
 
 const router =express.Router();
 
@@ -11,7 +11,7 @@ router.post('/',async(req,res)=>
         const cashSl=await CashSl.create(req.body);
         //console.log();
         if(cashSl)
-            return res.status(201).send("recorded");
+            return res.status(201).send(req.body);
         else
             return res.status(201).send("notRecorded");
     }

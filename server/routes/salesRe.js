@@ -31,6 +31,14 @@ router.get('/',async(req,res)=>
     res.status(200).json(data);
 })
 
+//get all
+router.get('/all',async(req,res)=>
+{
+    console.log(req.query);
+    const data=await SalesRe.find(req.query);
+    res.status(200).json(data);
+})
+
 
 // get by id
 router.get('/:id',async(req,res)=>

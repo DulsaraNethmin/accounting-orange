@@ -13,7 +13,7 @@ router.post('/',async(req,res)=>
         const salesCr=await SalesCr.create(req.body);
         //console.log();
         if(salesCr)
-            return res.status(201).send("recorded");
+            return res.status(201).send(req.body);
         else
             return res.status(201).send("notRecorded");
     }

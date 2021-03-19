@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import Navbar from './Component/Navbar'
 import {BrowserRouter as Router , Route, Switch} from 'react-router-dom';
 import Home from './routs/Home';
 import Cashsl from './routs/Cashsl';
@@ -10,6 +9,9 @@ import Salesre from './routs/Salesre';
 import Purchasere from './routs/Purchasere';
 import Creditpr from './routs/Creditpr';
 import Register from './routs/Register';
+import Dashboard from './routs/Dashboard';
+import Analysis from './routs/Analysis';
+
 
 //hello
 
@@ -20,15 +22,15 @@ return(
     <div>
         
         <Router>
-            <Navbar/>  
-            <Route  path='/home'><Home/></Route>
+            <Route exact path='/'><Home/></Route>
 
-       
-            <Route exact path='/'><Login/></Route>
+            <Route  path='/login'><Login/></Route>
+
+            <Route  path='/dash.board'><Dashboard/></Route>
+            
             <Route path='/register'><Register/></Route>
     
             <Route path='/cash.sale'><Cashsl/></Route>
-        
         
             <Route path='/credit.sale'><Creditsl/></Route>
    
@@ -39,6 +41,8 @@ return(
             <Route path='/purchase.return'><Purchasere/></Route>
  
             <Route path='/credit.purchase'><Creditpr/></Route>
+
+            <Route path='/analysis'><Analysis/></Route>
         </Router>
 
     </div>

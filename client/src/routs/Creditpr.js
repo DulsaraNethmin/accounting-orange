@@ -1,8 +1,10 @@
 import Button from '../Component/Button';
 import axios from 'axios';
+import {useState} from 'react';
+import Navbar from '../Component/Navbar';
 
 const Creditpr = () => {
-    
+    const [values,setValues]=useState([]);    
   //addentry
   const addEntry=(e)=>
   {
@@ -10,6 +12,7 @@ const Creditpr = () => {
       let date=document.getElementById('date').value;
       let invoice=document.getElementById('invoice').value;
       let name=document.getElementById('name').value;
+      let item=document.getElementById('item').value;
       let quantity=document.getElementById('quantity').value;
       let uprice=document.getElementById('unitprice').value;
       let discount=document.getElementById('discount').value;
@@ -19,6 +22,7 @@ const Creditpr = () => {
           date:date,
           invoice:invoice,
           customer:name,
+          item:item,
           quantity:Number(quantity),
           uprice:Number(uprice),
           discount:Number(discount),
@@ -26,8 +30,15 @@ const Creditpr = () => {
       }
   
       console.log(data);
-      axios.post('http://localhost:8000/user/info/purchase.cr',data);
-  
+      axios.post('http://localhost:8000/user/info/purchase.cr',data)
+        .then(res=>
+            {
+                console.log(res.data);
+                let arr=Object.values(res.data).map(e=><div>{e}</div>);
+                console.log(arr);
+                let arr2=values.concat(arr);
+                setValues(arr2);
+            })
   }
 
 
@@ -46,6 +57,7 @@ const search=(e)=>
             document.getElementById('qdate').value=res.data[0].date.slice(0,10);
             document.getElementById('qinvoice').value=res.data[0].invoice;
             document.getElementById('qname').value=res.data[0].customer;
+            document.getElementById('qitem').value=res.data[0].item;
             document.getElementById('qdiscount').value=res.data[0].discount;
             document.getElementById('qquantity').value=res.data[0].quantity;
             document.getElementById('quprice').value=res.data[0].uprice;
@@ -65,6 +77,7 @@ const updateq=(e)=>
        date:document.getElementById('qdate').value,
        invoice:document.getElementById('qinvoice').value,
        customer:document.getElementById('qname').value,
+       item:document.getElementById('qitem').value,
        quantity:Number(document.getElementById('qdiscount').value),
        uprice:Number(document.getElementById('qquantity').value),
        discount:Number(document.getElementById('quprice').value),
@@ -80,19 +93,32 @@ const  deleteq=(e)=>
 {
     console.log(id); 
     axios.delete(`http://localhost:8000/user/info/purchase.cr/${id}`);
-}   
+}  
+
+const getValue=()=>
+{
+    let v=document.getElementById('value').value*1;
+    let up=document.getElementById('unitprice').value*1;
+    let dis=document.getElementById('discount').value*1;
+    let qnt=document.getElementById('quantity').value*1; 
+    document.getElementById('value').value=
+        eval(up*qnt-up*qnt*dis/100);
+} 
     
-    return (  
+    return ( 
+        <div>
+            <Navbar/> 
         <div class='cashsl'>
            
             <div class='cashsl_entry'>
                 <h1>Purchase on Credit</h1>
                 <input type='date' id='date'/>
-                <input type='text' placeholder='invoice no.' id='invoice'/>
-                <input type='text'placeholder='Creditor Name' id='name'/>
+                <input type='text' placeholder='Purchase Invoice' id='invoice'/>
+                <input type='text'placeholder='Creditor name' id='name'/>
+                <input type='text'placeholder='Item' id='item'/>
                 <input type='text' placeholder='Quantity' id='quantity'/>
                 <input type='text' placeholder='Unit price' id='unitprice'/>
-                <input type='text' placeholder='Discount' id='discount'/>
+                <input type='text' placeholder='Discount' id='discount' onBlur={()=>getValue()}/>
                 <input type='text' placeholder='value' id='value'/>
                 <Button text='Add entry' onClick={e=>addEntry(e)}/>
             </div>
@@ -109,6 +135,7 @@ const  deleteq=(e)=>
                         <input type='date' id='qdate'/>
                         <input type='text' placeholder='Invoice no.' id='qinvoice'/>
                         <input type='text'placeholder='Name' id='qname'/>
+                        <input type='text'placeholder='Item' id='qitem'/>
                         <input type='text' placeholder='Quantity' id='qquantity'/>
                         <input type='text' placeholder='Unit Price' id='quprice'/>
                         <input type='text' placeholder='Discount' id='qdiscount'/>
@@ -118,18 +145,22 @@ const  deleteq=(e)=>
                     
                 </div>
                 <div class='query_table_creditsl'>
+                <Button text="fetch" className='tableFetch'/>
                     <div>
-                        <div>date</div>
-                        <div>invoice no</div>
-                        <div>name</div>
-                        <div>Quantity</div>
-                        <div>Unit Price</div>
-                        <div>discount</div>
-                        <div>value</div>
+                        <div className='div_table'>date</div>
+                        <div className='div_table'>credit note</div>
+                        <div className='div_table' >name</div>
+                        <div className='div_table' >item</div>
+                        <div className='div_table'>Quantity</div>
+                        <div className='div_table'>Unit Price</div>
+                        <div className='div_table'>discount</div>
+                        <div className='div_table'>value</div>
+                        {values}
                     </div>
                 </div>
             </div>
         </div>        
+    </div>
     );
 }
 <h1>Credit Purchase Page</h1> 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let salesReSchema = new mongoose.Schema({
     Date: {
-        type: String,
+        type: Date,
         required:true
     },
     creditnote: {
@@ -10,6 +10,10 @@ let salesReSchema = new mongoose.Schema({
         unique:true
     },
     customer: {
+        type: String,
+        required:true
+    },
+    item: {
         type: String,
         required:true
     },

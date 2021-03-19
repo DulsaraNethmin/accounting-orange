@@ -11,7 +11,7 @@ router.post('/',async(req,res)=>
         const purchaseCr=await PurchaseCr.create(req.body);
        //console.log();
         if(purchaseCr)
-            return res.status(201).send("recorded");
+            return res.status(201).send(req.body);
         else
             return res.status(201).send("notRecorded");
     }

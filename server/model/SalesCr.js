@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const creditSlSchema = new mongoose.Schema({
     date:{
-        type:String,
+        type:Date,
         required:true
     },
     invoice: {
@@ -10,6 +10,10 @@ const creditSlSchema = new mongoose.Schema({
         unique:true
     },
     customer: {
+        type: String,
+        required:true
+    },
+    item: {
         type: String,
         required:true
     },
