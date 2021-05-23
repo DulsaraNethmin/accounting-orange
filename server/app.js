@@ -13,6 +13,7 @@ const purchaseCr=require('./routes/purchaseCr');
 const cashPr=require('./routes/cashPr');
 const cashSl=require('./routes/cashSl');
 const report= require('./routes/report');
+require('dotenv').config();
 app.use(cors());
 
 //monunt user
@@ -39,4 +40,4 @@ mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true })
 
 
 
-app.listen(8000,(err)=>console.log("server connected"));
+app.listen(process.env.PORT || 8080,(err)=>console.log("server connected"));
