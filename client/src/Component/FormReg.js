@@ -19,7 +19,7 @@ const FormReg =({onClick}) => {
             phonno:document.getElementById('phonno').value
         }
         console.log(data);
-            axios.post('http://localhost:8000/user/info/save',data)
+            axios.post('https://accountina.herokuapp.com/user/info/save',data)
                 .then((res)=>
                 {
                         console.log(res);

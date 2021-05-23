@@ -18,7 +18,7 @@ const FormLogin =(props) =>
             password:document.getElementById('password').value
         }
         console.log(data);
-            axios.post('http://localhost:8000/user/info/login',data)
+            axios.post('https://accountina.herokuapp.com/user/info/login',data)
                 .then((res)=>
                 {
                     //history.push('/home');
