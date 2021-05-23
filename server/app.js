@@ -29,7 +29,7 @@ app.use('/user/info/cash.sl',cashSl);
 app.use('/get.user.info',report);
 
 
-app.get('/',(req,res)=>res.send('hello'));
+app.get('/',(req,res)=>res.send('this is accountina backend'));
 
 const uri = "mongodb+srv://user:user123@nethmincluster99.5wvxn.mongodb.net/Accountina?retryWrites=true&w=majority";
 

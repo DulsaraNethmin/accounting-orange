@@ -33,7 +33,7 @@ const addEntry=(e)=>
     }
 
     console.log(data);
-    axios.post('http://localhost:8000/user/info/sales.cr',data)
+    axios.post('https://accountina.herokuapp.com/user/info/sales.cr',data)
         .then(res=>
             {
                 console.log(res.data);
@@ -50,7 +50,7 @@ const search=(e)=>
 
     e.preventDefault();
     let invoice=document.getElementById('search').value;
-    axios.get(`http://localhost:8000/user/info/sales.cr?invoice=${invoice}`)
+    axios.get(`https://accountina.herokuapp.com/user/info/sales.cr?invoice=${invoice}`)
         .then(res=>
         {
             id=res.data[0]._id;
@@ -86,14 +86,14 @@ const updateq=(e)=>
     }
     console.log(id + "and "+ data);
     //console.log(data);
-   axios.put(`http://localhost:8000/user/info/sales.cr/${id}`,data);
+   axios.put(`https://accountina.herokuapp.com/user/info/sales.cr/${id}`,data);
 }
 
 
 const  deleteq=(e)=>
 {
     console.log(id); 
-    axios.delete(`http://localhost:8000/user/info/sales.cr/${id}`);
+    axios.delete(`https://accountina.herokuapp.com/user/info/sales.cr/${id}`);
 }
 
 const getValue=()=>

@@ -32,7 +32,7 @@ const [purchasereVal,setPurchasereVal]=useState([]);
             tdate:tdate
         };
         console.log(data);
-        axios.get(`http://localhost:8000/get.user.info?fdate=${fdate}&tdate=${tdate}`)
+        axios.get(`https://accountina.herokuapp.com/get.user.info?fdate=${fdate}&tdate=${tdate}`)
             .then(res=>
                 {
                     console.log('success');
